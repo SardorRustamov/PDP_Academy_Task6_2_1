@@ -1,10 +1,11 @@
 package com.example.pdpacademytask6_2_1.database
 
-import com.example.pdpacademytask6_2_1.model.Contact
+import com.example.pdpacademytask6_2_1.model.Food
 
 interface DataBaseService {
-    fun addContact(contact: Contact)
 
-    fun listContact(): List<Contact>
+    fun addFood(food: Food)
+
+    fun listFood(): List<Food>
 
 }

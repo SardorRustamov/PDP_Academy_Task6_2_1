@@ -3,26 +3,26 @@ package com.example.pdpacademytask6_2_1.database
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.example.pdpacademytask6_2_1.model.Contact
+import com.example.pdpacademytask6_2_1.model.Food
 
 class DataBaseClass(context: Context) :SQLiteOpenHelper(
     context, DB_NAME, null, DB_VERSION), DataBaseService{
 
     companion object{
-            const val DB_NAME = "contact_list"
+            const val DB_NAME = "food_list"
             const val DB_VERSION = 1
 
-            const val TABLE_NAME = "contact"
-            const val CONTACT_ID = "id"
-            const val CONTACT_NAME = "name"
-            const val CONTACT_NUMBER = "number"
+            const val TABLE_NAME = "food"
+            const val FOOD_ID = "id"
+            const val FOOD_NAME = "food_name"
+            const val FOOD_PRODUCT = "food_product"
+            const val METHOD_PREPARATION  = "food_preparation"
     }
 
     override fun onCreate(p0: SQLiteDatabase?) {
-        val query = "create table $TABLE_NAME  ($CONTACT_ID integer not null primary key autoincrement, $CONTACT_NAME text not null, $CONTACT_NUMBER text not null)"
+        val query = "create table $TABLE_NAME  ($FOOD_ID integer not null primary key autoincrement, $FOOD_NAME text not null, $FOOD_PRODUCT text not null, $METHOD_PREPARATION text not null )"
         p0?.execSQL(query)
     }
 
@@ -30,20 +30,21 @@ class DataBaseClass(context: Context) :SQLiteOpenHelper(
 
     }
 
-    override fun addContact(contact: Contact) {
+    override fun addFood(food: Food) {
         val database = this.writableDatabase
 
         val contentValues = ContentValues()
 
-        contentValues.put(CONTACT_NAME, contact.name)
-        contentValues.put(CONTACT_NUMBER, contact.number)
+        contentValues.put(FOOD_NAME, food.name)
+        contentValues.put(FOOD_PRODUCT, food.product)
+        contentValues.put(METHOD_PREPARATION, food.preparation)
 
         database.insert(TABLE_NAME, null, contentValues)
     }
 
     @SuppressLint("Recycle")
-    override fun listContact(): List<Contact> {
-        var list = ArrayList<Contact>()
+    override fun listFood(): List<Food> {
+        var list = ArrayList<Food>()
 
         val database = this.readableDatabase
         val query = "select * from $TABLE_NAME"
@@ -53,8 +54,9 @@ class DataBaseClass(context: Context) :SQLiteOpenHelper(
             do {
                 val id = cursor.getInt(0)
                 val name = cursor.getString(1)
-                val number = cursor.getString(2)
-                val contact = Contact(id, name, number)
+                val product = cursor.getString(2)
+                val preparation= cursor.getString(3)
+                val contact = Food(id, name, product, preparation)
                 list.add(contact)
             }while (cursor.moveToNext())
         }

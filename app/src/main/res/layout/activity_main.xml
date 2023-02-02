@@ -11,25 +11,25 @@
 
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/contact_list"
+        android:id="@+id/food_list"
         android:layout_width="wrap_content"
         android:width="164dp"
         android:height="46dp"
         android:viewportWidth="164"
         android:viewportHeight="46"
         android:layout_height="wrap_content"
-        android:text="Kontaklar ro'yxati"
+        android:text="Menyu"
         android:textColor="@color/white"
         android:textSize="12sp"
         android:textAllCaps="false"
         android:background="@drawable/rectangle_1"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/add_contact"
+        android:id="@+id/add_food"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Kontak qo'shish"
+        android:text="Taom qo'shish"
         android:textAllCaps="false"
         android:width="164dp"
         android:height="46dp"
